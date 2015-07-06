@@ -1,0 +1,24 @@
+#version 120
+
+
+uniform vec3 overrideColorRGB;
+uniform bool overrideColor = false;
+ 
+varying vec2 texCoord;
+
+uniform sampler2D texUnit;
+ 
+void main()
+{
+    vec4 texel = texture2D(texUnit, texCoord);
+
+    if (overrideColor == true)
+	gl_FragColor = vec4(overrideColorRGB.x, overrideColorRGB.y,
+			 overrideColorRGB.z,  texel.w);
+    else
+	gl_FragColor = texel; 
+
+   // outColor = vec4(texCoord.x, texCoord.y, 0.0,1.0);
+}
+
+ 

@@ -1,0 +1,19 @@
+#version 120
+ 
+attribute vec3 position;
+//attribute vec3 normal;
+attribute vec2 texCoordIn;
+
+uniform mat4 traslMatrix, scaleMatrix;
+
+varying vec2 texCoord;
+//varying vec3 normalOut;
+void main()
+{
+    vec4 pos = vec4(position.x,position.y,position.z, 1.0);
+   // normalOut = normal;
+    gl_Position =   traslMatrix* scaleMatrix *pos;
+    texCoord = texCoordIn;
+}
+
+ 

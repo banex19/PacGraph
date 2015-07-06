@@ -1,0 +1,26 @@
+#version 150
+
+precision highp float;
+
+uniform vec3 overrideColorRGB;
+uniform bool overrideColor = false;
+ 
+out vec4 outColor;
+in vec2 texCoord;
+
+uniform sampler2D texUnit;
+ 
+void main()
+{
+    vec4 texel = texture(texUnit, texCoord);
+
+    if (overrideColor == true)
+	outColor = vec4(overrideColorRGB.x, overrideColorRGB.y,
+			 overrideColorRGB.z,  texel.w);
+    else
+	outColor = texel; 
+
+   // outColor = vec4(texCoord.x, texCoord.y, 0.0,1.0);
+}
+
+ 
